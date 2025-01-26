@@ -79,7 +79,7 @@ function checkUpdates()
                     update.version = data.version
                     update.download = data.download
                     update.description = data.description
-                    sms('Доступно обновление {mc}' .. data.version .. '{FFFFFF}! Нажмите кнопку "Обновить" в меню для загрузки.')
+                    sms('Г„Г®Г±ГІГіГЇГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ {mc}' .. data.version .. '{FFFFFF}! ГЌГ Г¦Г¬ГЁГІГҐ ГЄГ­Г®ГЇГЄГі "ГЋГЎГ­Г®ГўГЁГІГј" Гў Г¬ГҐГ­Гѕ Г¤Г«Гї Г§Г ГЈГ°ГіГ§ГЄГЁ.')
                 end
             end
         end
@@ -157,17 +157,17 @@ function json()
 end
 
 local chatTypes = {
-    {id = 's', name = 'Крик (/s)', maxLength = 99},
-    {id = 'jb', name = 'НРП Чат-Работы (/jb)', maxLength = 87},
-    {id = 'j', name = 'РП Чат-работы (/j)', maxLength = 100},
-    {id = 'vr', name = 'VIP-чат (/vr)', maxLength = 105},
-    {id = 'fb', name = 'НРП Чат-Нелегал. (/fb)', maxLength = 90},
-    {id = 'f', name = 'РП Чат-Нелегал. (/f)', maxLength = 90},
-    {id = 'fam', name = 'Семейный (/fam)', maxLength = 89},
-    {id = 'rb', name = 'НРП Чат-Гос. (/rb)', maxLength = 90},
-    {id = 'al', name = 'Семейный Альянс (/al)', maxLength = 94},
-    {id = 'ad', name = 'Объявления (/ad)', maxLength = 80}, 
-    {id = 'gd', name = 'Чат коалиции (/gd)', maxLength = 100},
+    {id = 's', name = 'ГЉГ°ГЁГЄ (/s)', maxLength = 99},
+    {id = 'jb', name = 'ГЌГђГЏ Г—Г ГІ-ГђГ ГЎГ®ГІГ» (/jb)', maxLength = 87},
+    {id = 'j', name = 'ГђГЏ Г—Г ГІ-Г°Г ГЎГ®ГІГ» (/j)', maxLength = 100},
+    {id = 'vr', name = 'VIP-Г·Г ГІ (/vr)', maxLength = 105},
+    {id = 'fb', name = 'ГЌГђГЏ Г—Г ГІ-ГЌГҐГ«ГҐГЈГ Г«. (/fb)', maxLength = 90},
+    {id = 'f', name = 'ГђГЏ Г—Г ГІ-ГЌГҐГ«ГҐГЈГ Г«. (/f)', maxLength = 90},
+    {id = 'fam', name = 'Г‘ГҐГ¬ГҐГ©Г­Г»Г© (/fam)', maxLength = 89},
+    {id = 'rb', name = 'ГЌГђГЏ Г—Г ГІ-ГѓГ®Г±. (/rb)', maxLength = 90},
+    {id = 'al', name = 'Г‘ГҐГ¬ГҐГ©Г­Г»Г© ГЂГ«ГјГїГ­Г± (/al)', maxLength = 94},
+    {id = 'ad', name = 'ГЋГЎГєГїГўГ«ГҐГ­ГЁГї (/ad)', maxLength = 80}, 
+    {id = 'gd', name = 'Г—Г ГІ ГЄГ®Г Г«ГЁГ¶ГЁГЁ (/gd)', maxLength = 100},
 }
 
 local defaultADV = {
@@ -254,7 +254,7 @@ local defaultADV = {
 }
 
 local adCenters = {
-    u8("Автоматически"),
+    u8("ГЂГўГІГ®Г¬Г ГІГЁГ·ГҐГ±ГЄГЁ"),
     "SF",
     "LV",
     "LS"
@@ -262,9 +262,9 @@ local adCenters = {
 local centerIndex = imgui.new['const char*'][#adCenters](adCenters)
 
 local adTypes = {
-    u8("Обычное"),
+    u8("ГЋГЎГ»Г·Г­Г®ГҐ"),
     "VIP",
-    u8("Реклама бизнеса")
+    u8("ГђГҐГЄГ«Г Г¬Г  ГЎГЁГ§Г­ГҐГ±Г ")
 }
 local adTypeIndex = imgui.new['const char*'][#adTypes](adTypes)
 
@@ -278,7 +278,7 @@ local settings = json():Load({
     },
     ["configs"] = {
         {
-            ["name"] = "Основной",
+            ["name"] = "ГЋГ±Г­Г®ГўГ­Г®Г©",
             ["adv"] = defaultADV
         }
     }
@@ -396,10 +396,10 @@ imgui.OnFrame(
                         end
                     end
 
-                    imgui.Text(u8'Настройки для: ' .. u8(chat.name))
+                    imgui.Text(u8'ГЌГ Г±ГІГ°Г®Г©ГЄГЁ Г¤Г«Гї: ' .. u8(chat.name))
                     imgui.Separator()
 
-                    if imgui.Checkbox(u8'Включить##'..chat.id, imgui.new.bool(settings.configs[settings.main.activeConf].adv[chat.id].enabled)) then
+                    if imgui.Checkbox(u8'Г‚ГЄГ«ГѕГ·ГЁГІГј##'..chat.id, imgui.new.bool(settings.configs[settings.main.activeConf].adv[chat.id].enabled)) then
                         settings.configs[settings.main.activeConf].adv[chat.id].enabled = not settings.configs[settings.main.activeConf].adv[chat.id].enabled
                         settings.main.enabled = false
                         json():Save(settings)
@@ -407,7 +407,7 @@ imgui.OnFrame(
 
                     imgui.PushItemWidth(100)
                     local delay = imgui.new.int(settings.configs[settings.main.activeConf].adv[chat.id].delay)
-                    if imgui.InputInt(u8'Задержка между повторами##'..chat.id, delay) then
+                    if imgui.InputInt(u8'Г‡Г Г¤ГҐГ°Г¦ГЄГ  Г¬ГҐГ¦Г¤Гі ГЇГ®ГўГІГ®Г°Г Г¬ГЁ##'..chat.id, delay) then
                         settings.configs[settings.main.activeConf].adv[chat.id].delay = delay[0]
                         if settings.configs[settings.main.activeConf].adv[chat.id].delay < 1 then 
                             settings.configs[settings.main.activeConf].adv[chat.id].delay = 1 
@@ -415,18 +415,18 @@ imgui.OnFrame(
                         settings.main.enabled = false
                         json():Save(settings)
                     end
-                    imgui.Tooltip(u8'Устанавливает время ожидания между отправкой сообщений (в секундах)')
+                    imgui.Tooltip(u8'Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГІ ГўГ°ГҐГ¬Гї Г®Г¦ГЁГ¤Г Г­ГЁГї Г¬ГҐГ¦Г¤Гі Г®ГІГЇГ°Г ГўГЄГ®Г© Г±Г®Г®ГЎГ№ГҐГ­ГЁГ© (Гў Г±ГҐГЄГіГ­Г¤Г Гµ)')
 
                     if chat.id ~= 'ad' then
                         local lineDelay = imgui.new.int(settings.configs[settings.main.activeConf].adv[chat.id].lineDelay or 1)
-                        if imgui.InputInt(u8'Задержка между строчками##'..chat.id, lineDelay) then
+                        if imgui.InputInt(u8'Г‡Г Г¤ГҐГ°Г¦ГЄГ  Г¬ГҐГ¦Г¤Гі Г±ГІГ°Г®Г·ГЄГ Г¬ГЁ##'..chat.id, lineDelay) then
                             settings.configs[settings.main.activeConf].adv[chat.id].lineDelay = lineDelay[0]
                             if settings.configs[settings.main.activeConf].adv[chat.id].lineDelay < 1 then 
                                 settings.configs[settings.main.activeConf].adv[chat.id].lineDelay = 1 
                             end
                             json():Save(settings)
                         end
-                        imgui.Tooltip(u8'Устанавливает задержку между отправкой строк в\nмногострочных сообщениях (в секундах)')
+                        imgui.Tooltip(u8'Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГІ Г§Г Г¤ГҐГ°Г¦ГЄГі Г¬ГҐГ¦Г¤Гі Г®ГІГЇГ°Г ГўГЄГ®Г© Г±ГІГ°Г®ГЄ Гў\nГ¬Г­Г®ГЈГ®Г±ГІГ°Г®Г·Г­Г»Гµ Г±Г®Г®ГЎГ№ГҐГ­ГЁГїГµ (Гў Г±ГҐГЄГіГ­Г¤Г Гµ)')
                     end
                     imgui.PopItemWidth()
 
@@ -438,7 +438,7 @@ imgui.OnFrame(
                             settings.configs[settings.main.activeConf].adv[chat.id].centr = centrint[0]
                             json():Save(settings)
                         end
-                        imgui.Tooltip(u8'Выберите город, в котором будет размещено объявление.\nПри выборе "Автоматически" объявление будет размещено в городе,\nгде последний раз редактировали объявление')
+                        imgui.Tooltip(u8'Г‚Г»ГЎГҐГ°ГЁГІГҐ ГЈГ®Г°Г®Г¤, Гў ГЄГ®ГІГ®Г°Г®Г¬ ГЎГіГ¤ГҐГІ Г°Г Г§Г¬ГҐГ№ГҐГ­Г® Г®ГЎГєГїГўГ«ГҐГ­ГЁГҐ.\nГЏГ°ГЁ ГўГ»ГЎГ®Г°ГҐ "ГЂГўГІГ®Г¬Г ГІГЁГ·ГҐГ±ГЄГЁ" Г®ГЎГєГїГўГ«ГҐГ­ГЁГҐ ГЎГіГ¤ГҐГІ Г°Г Г§Г¬ГҐГ№ГҐГ­Г® Гў ГЈГ®Г°Г®Г¤ГҐ,\nГЈГ¤ГҐ ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ© Г°Г Г§ Г°ГҐГ¤Г ГЄГІГЁГ°Г®ГўГ Г«ГЁ Г®ГЎГєГїГўГ«ГҐГ­ГЁГҐ')
                         
                         imgui.SameLine()
                         
@@ -447,17 +447,17 @@ imgui.OnFrame(
                             settings.configs[settings.main.activeConf].adv[chat.id].type = adTypeInt[0]
                             json():Save(settings)
                         end
-                        imgui.Tooltip(u8'Выберите тип объявления: обычное, VIP или реклама бизнеса')
+                        imgui.Tooltip(u8'Г‚Г»ГЎГҐГ°ГЁГІГҐ ГІГЁГЇ Г®ГЎГєГїГўГ«ГҐГ­ГЁГї: Г®ГЎГ»Г·Г­Г®ГҐ, VIP ГЁГ«ГЁ Г°ГҐГЄГ«Г Г¬Г  ГЎГЁГ§Г­ГҐГ±Г ')
                         imgui.PopItemWidth()
                     end
 
                     if chat.id == 'vr' then
-                        if imgui.Checkbox(u8'Отправка рекламой в випчат', imgui.new.bool(settings.configs[settings.main.activeConf].adv[chat.id].vrAdvertisementSend)) then
+                        if imgui.Checkbox(u8'ГЋГІГЇГ°Г ГўГЄГ  Г°ГҐГЄГ«Г Г¬Г®Г© Гў ГўГЁГЇГ·Г ГІ', imgui.new.bool(settings.configs[settings.main.activeConf].adv[chat.id].vrAdvertisementSend)) then
                             settings.configs[settings.main.activeConf].adv[chat.id].vrAdvertisementSend = not settings.configs[settings.main.activeConf].adv[chat.id].vrAdvertisementSend
                             settings.main.enabled = false
                             json():Save(settings)
                         end
-                        imgui.Tooltip(u8'При активности скрипт будет автоматически\nоплачивать рекламу в VIP чат')
+                        imgui.Tooltip(u8'ГЏГ°ГЁ Г ГЄГІГЁГўГ­Г®Г±ГІГЁ Г±ГЄГ°ГЁГЇГІ ГЎГіГ¤ГҐГІ Г ГўГІГ®Г¬Г ГІГЁГ·ГҐГ±ГЄГЁ\nГ®ГЇГ«Г Г·ГЁГўГ ГІГј Г°ГҐГЄГ«Г Г¬Гі Гў VIP Г·Г ГІ')
                     end
                     
                     imgui.PushStyleColor(imgui.Col.FrameBg, imgui.ImVec4(0.1, 0.1, 0.1, 1.0))
@@ -474,7 +474,7 @@ imgui.OnFrame(
                             
                             if imgui.BeginDragDropSource(4) then
                                 imgui.SetDragDropPayload('##msgpayload'..chat.id, ffi.new('int[1]', i), 23)
-                                imgui.Text(u8'Перетащите сообщение для изменения порядка')
+                                imgui.Text(u8'ГЏГҐГ°ГҐГІГ Г№ГЁГІГҐ Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ Г¤Г«Гї ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї ГЇГ®Г°ГїГ¤ГЄГ ')
                                 imgui.EndDragDropSource()
                             end
                             
@@ -500,21 +500,21 @@ imgui.OnFrame(
                     imgui.PopStyleColor()
 
                     imgui.PushItemWidth(-1)
-                    imgui.InputTextWithHint('##newMsg'..chat.id, u8'Введите новое сообщение...', newMessage, 256)
-                    if imgui.Button(u8'Добавить сообщение##'..chat.id, imgui.ImVec2(-1, 25)) then
+                    imgui.InputTextWithHint('##newMsg'..chat.id, u8'Г‚ГўГҐГ¤ГЁГІГҐ Г­Г®ГўГ®ГҐ Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ...', newMessage, 256)
+                    if imgui.Button(u8'Г„Г®ГЎГ ГўГЁГІГј Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ##'..chat.id, imgui.ImVec2(-1, 25)) then
                         local msg = u8:decode(ffi.string(newMessage))
                         if #msg > 0 then
                             if chat.id == 'ad' then
                                 if #msg > chat.maxLength then
-                                    sms('Сообщение слишком длинное! Максимум ' .. chat.maxLength .. ' символов.')
+                                    sms('Г‘Г®Г®ГЎГ№ГҐГ­ГЁГҐ Г±Г«ГЁГёГЄГ®Г¬ Г¤Г«ГЁГ­Г­Г®ГҐ! ГЊГ ГЄГ±ГЁГ¬ГіГ¬ ' .. chat.maxLength .. ' Г±ГЁГ¬ГўГ®Г«Г®Гў.')
                                 elseif #settings.configs[settings.main.activeConf].adv[chat.id].messages == 0 then
                                     settings.configs[settings.main.activeConf].adv[chat.id].messages = {msg}
                                 else
-                                    sms('Для объявления можно добавлять только одно сообщение!')
+                                    sms('Г„Г«Гї Г®ГЎГєГїГўГ«ГҐГ­ГЁГї Г¬Г®Г¦Г­Г® Г¤Г®ГЎГ ГўГ«ГїГІГј ГІГ®Г«ГјГЄГ® Г®Г¤Г­Г® Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ!')
                                 end
                             else
                                 if #msg > chat.maxLength then
-                                    sms('Сообщение слишком длинное! Максимум ' .. chat.maxLength .. ' символов.')
+                                    sms('Г‘Г®Г®ГЎГ№ГҐГ­ГЁГҐ Г±Г«ГЁГёГЄГ®Г¬ Г¤Г«ГЁГ­Г­Г®ГҐ! ГЊГ ГЄГ±ГЁГ¬ГіГ¬ ' .. chat.maxLength .. ' Г±ГЁГ¬ГўГ®Г«Г®Гў.')
                                 else
                                     settings.configs[settings.main.activeConf].adv[chat.id].messages = settings.configs[settings.main.activeConf].adv[chat.id].messages or {}
                                     table.insert(settings.configs[settings.main.activeConf].adv[chat.id].messages, msg)
@@ -528,11 +528,11 @@ imgui.OnFrame(
                     end
                     imgui.PopItemWidth()
                 else
-                    imgui.TextColored(imgui.ImVec4(0.7, 0.7, 0.7, 1.0), u8"Выберите тип чата слева")
+                    imgui.TextColored(imgui.ImVec4(0.7, 0.7, 0.7, 1.0), u8"Г‚Г»ГЎГҐГ°ГЁГІГҐ ГІГЁГЇ Г·Г ГІГ  Г±Г«ГҐГўГ ")
                 end
             imgui.EndChild()
 
-            if imgui.Button(u8'Создать', imgui.ImVec2(-(resX / 3), -1)) then
+            if imgui.Button(u8'Г‘Г®Г§Г¤Г ГІГј', imgui.ImVec2(-(resX / 3), -1)) then
                 imgui.OpenPopup('##createConfigPopup')
             end
 
@@ -540,38 +540,38 @@ imgui.OnFrame(
 
             imgui.BeginChild('::settingsChild', imgui.ImVec2(0, -1), false)
 
-            if imgui.Checkbox(u8'Включить скрипт', imgui.new.bool(settings.main.enabled)) then
+            if imgui.Checkbox(u8'Г‚ГЄГ«ГѕГ·ГЁГІГј Г±ГЄГ°ГЁГЇГІ', imgui.new.bool(settings.main.enabled)) then
                 settings.main.enabled = not settings.main.enabled
                 json():Save(settings)
             end
 
             imgui.SameLine()
 
-            if imgui.Checkbox(u8'Отключать при не активности', imgui.new.bool(settings.main.inactiveShutdown)) then
+            if imgui.Checkbox(u8'ГЋГІГЄГ«ГѕГ·Г ГІГј ГЇГ°ГЁ Г­ГҐ Г ГЄГІГЁГўГ­Г®Г±ГІГЁ', imgui.new.bool(settings.main.inactiveShutdown)) then
                 settings.main.inactiveShutdown = not settings.main.inactiveShutdown
                 json():Save(settings)
             end
-            imgui.Tooltip(u8'При включении этой опции скрипт будет автоматически приостанавливаться,\nесли не обнаружит активность игрока')
+            imgui.Tooltip(u8'ГЏГ°ГЁ ГўГЄГ«ГѕГ·ГҐГ­ГЁГЁ ГЅГІГ®Г© Г®ГЇГ¶ГЁГЁ Г±ГЄГ°ГЁГЇГІ ГЎГіГ¤ГҐГІ Г ГўГІГ®Г¬Г ГІГЁГ·ГҐГ±ГЄГЁ ГЇГ°ГЁГ®Г±ГІГ Г­Г ГўГ«ГЁГўГ ГІГјГ±Гї,\nГҐГ±Г«ГЁ Г­ГҐ Г®ГЎГ­Г Г°ГіГ¦ГЁГІ Г ГЄГІГЁГўГ­Г®Г±ГІГј ГЁГЈГ°Г®ГЄГ ')
 
             imgui.SameLine()
 
             if settings.main.inactiveShutdown then
                 imgui.PushItemWidth(100)
                 sleepInactiveShutdownInt[0] = settings.main.sleepInactiveShutdown
-                if imgui.InputInt(u8'Время до отключения', sleepInactiveShutdownInt) then
+                if imgui.InputInt(u8'Г‚Г°ГҐГ¬Гї Г¤Г® Г®ГІГЄГ«ГѕГ·ГҐГ­ГЁГї', sleepInactiveShutdownInt) then
                     settings.main.sleepInactiveShutdown = sleepInactiveShutdownInt[0]
                     if settings.main.sleepInactiveShutdown < 1 then settings.main.sleepInactiveShutdown = 1 end
                     json():Save(settings)
                 end
-                imgui.Tooltip(u8'Время в минутах, после которого скрипт приостановит\nработу при отсутствии активности')
+                imgui.Tooltip(u8'Г‚Г°ГҐГ¬Гї Гў Г¬ГЁГ­ГіГІГ Гµ, ГЇГ®Г±Г«ГҐ ГЄГ®ГІГ®Г°Г®ГЈГ® Г±ГЄГ°ГЁГЇГІ ГЇГ°ГЁГ®Г±ГІГ Г­Г®ГўГЁГІ\nГ°Г ГЎГ®ГІГі ГЇГ°ГЁ Г®ГІГ±ГіГІГ±ГІГўГЁГЁ Г ГЄГІГЁГўГ­Г®Г±ГІГЁ')
                 imgui.PopItemWidth()
             end
 
-            if imgui.Checkbox(u8'Совместимость с VIP-Resend', imgui.new.bool(settings.main.vipResend)) then
+            if imgui.Checkbox(u8'Г‘Г®ГўГ¬ГҐГ±ГІГЁГ¬Г®Г±ГІГј Г± VIP-Resend', imgui.new.bool(settings.main.vipResend)) then
                 settings.main.vipResend = not settings.main.vipResend
                 json():Save(settings)
             end
-            imgui.Tooltip(u8'При включении этой опции скрипт будет работать корректно\nс установленным VIP-Resend\n\n(ЕСЛИ НЕ ЖЕЛАЕТЕ ПОЛУЧИТЬ БАН - ВКЛЮЧАЙТЕ)')
+            imgui.Tooltip(u8'ГЏГ°ГЁ ГўГЄГ«ГѕГ·ГҐГ­ГЁГЁ ГЅГІГ®Г© Г®ГЇГ¶ГЁГЁ Г±ГЄГ°ГЁГЇГІ ГЎГіГ¤ГҐГІ Г°Г ГЎГ®ГІГ ГІГј ГЄГ®Г°Г°ГҐГЄГІГ­Г®\nГ± ГіГ±ГІГ Г­Г®ГўГ«ГҐГ­Г­Г»Г¬ VIP-Resend\n\n(Г…Г‘Г‹Г€ ГЌГ… Г†Г…Г‹ГЂГ…Г’Г… ГЏГЋГ‹Г“Г—Г€Г’Гњ ГЃГЂГЌ - Г‚ГЉГ‹ГћГ—ГЂГ‰Г’Г…)')
             imgui.EndChild()
         end
 
@@ -580,10 +580,10 @@ imgui.OnFrame(
             imgui.SetWindowPosVec2(imgui.ImVec2(resX / 2 - 100, resY / 2 - 50))
             
             imgui.PushItemWidth(-1)
-            imgui.InputTextWithHint('##configName', u8'Название конфигурации', configName, 32, imgui.InputTextFlags.AutoSelectAll)
+            imgui.InputTextWithHint('##configName', u8'ГЌГ Г§ГўГ Г­ГЁГҐ ГЄГ®Г­ГґГЁГЈГіГ°Г Г¶ГЁГЁ', configName, 32, imgui.InputTextFlags.AutoSelectAll)
             imgui.PopItemWidth()
             
-            if imgui.Button(u8'Создать', imgui.ImVec2(-1, 25)) then
+            if imgui.Button(u8'Г‘Г®Г§Г¤Г ГІГј', imgui.ImVec2(-1, 25)) then
                 if #u8:decode(ffi.string(configName)) > 0 then
                     table.insert(settings.configs, {
                         ["name"] = u8:decode(ffi.string(configName)),
@@ -597,7 +597,7 @@ imgui.OnFrame(
             
             imgui.Separator()
 
-            if imgui.Button(u8'Закрыть', imgui.ImVec2(-1, 25)) then
+            if imgui.Button(u8'Г‡Г ГЄГ°Г»ГІГј', imgui.ImVec2(-1, 25)) then
                 imgui.CloseCurrentPopup()
             end
             imgui.EndPopup()
@@ -610,19 +610,19 @@ imgui.OnFrame(
         imgui.SetNextWindowSize(imgui.ImVec2(sizeX, sizeY), imgui.Cond.Always)
         
         if imgui.Begin('##info', _, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoMove + imgui.WindowFlags.NoTitleBar) then
-            imgui.TextColored(imgui.ImVec4(0.7, 0.7, 0.7, 1.0), u8"Разработчик:")
+            imgui.TextColored(imgui.ImVec4(0.7, 0.7, 0.7, 1.0), u8"ГђГ Г§Г°Г ГЎГ®ГІГ·ГЁГЄ:")
             imgui.Link("https://vk.com/id620137656", u8"VK: vk.com/id620137656")
             imgui.Link("https://t.me/discq192", u8"Telegram: @discq192")
             
             if update.available then
                 imgui.Separator()
-                imgui.TextColored(imgui.ImVec4(1, 0.8, 0, 1), u8"Доступно обновление " .. update.version)
+                imgui.TextColored(imgui.ImVec4(1, 0.8, 0, 1), u8"Г„Г®Г±ГІГіГЇГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ " .. update.version)
 
                 for _, line in ipairs(update.description) do
                     imgui.TextWrapped(line)
                 end
 
-                if imgui.Button(u8"Обновить", imgui.ImVec2(-1, 25)) then
+                if imgui.Button(u8"ГЋГЎГ­Г®ГўГЁГІГј", imgui.ImVec2(-1, 25)) then
                     os.execute('explorer ' .. update.download)
                 end
             end
@@ -642,7 +642,7 @@ function sampev.onShowDialog(id, style, title, button1, button2, text)
     end
 
     if (currentConfig.adv.ad.enabled and settings.main.enabled) or isAdvCommand then
-        if title:find("Выберите радиостанцию") and text:find("Радиостанция") then
+        if title:find("Г‚Г»ГЎГҐГ°ГЁГІГҐ Г°Г Г¤ГЁГ®Г±ГІГ Г­Г¶ГЁГѕ") and text:find("ГђГ Г¤ГЁГ®Г±ГІГ Г­Г¶ГЁГї") then
             local lines = {}
             for line in text:gmatch("[^\r\n]+") do
                 if not line:find("{[a-fA-F0-9]+}") then
@@ -652,14 +652,14 @@ function sampev.onShowDialog(id, style, title, button1, button2, text)
 
             local function getSeconds(line)
                 local total = 0
-                if line:find("час") then
-                    local h, m, s = line:match("(%d+) час (%d+) мин (%d+) сек")
+                if line:find("Г·Г Г±") then
+                    local h, m, s = line:match("(%d+) Г·Г Г± (%d+) Г¬ГЁГ­ (%d+) Г±ГҐГЄ")
                     total = h * 3600 + m * 60 + s
-                elseif line:find("мин") then
-                    local m, s = line:match("(%d+) мин (%d+) сек")
+                elseif line:find("Г¬ГЁГ­") then
+                    local m, s = line:match("(%d+) Г¬ГЁГ­ (%d+) Г±ГҐГЄ")
                     total = m * 60 + s
-                elseif line:find("сек") then
-                    total = tonumber(line:match("(%d+) сек"))
+                elseif line:find("Г±ГҐГЄ") then
+                    total = tonumber(line:match("(%d+) Г±ГҐГЄ"))
                 end
                 return total
             end
@@ -675,13 +675,13 @@ function sampev.onShowDialog(id, style, title, button1, button2, text)
                 local minTime = math.min(table.unpack(times))
                 if minTime == times[1] then
                     response = 0 -- LS
-                    sms('/ad - Последняя редакция была в Радиоцентре Лос-Сантос')
+                    sms('/ad - ГЏГ®Г±Г«ГҐГ¤Г­ГїГї Г°ГҐГ¤Г ГЄГ¶ГЁГї ГЎГ»Г«Г  Гў ГђГ Г¤ГЁГ®Г¶ГҐГ­ГІГ°ГҐ Г‹Г®Г±-Г‘Г Г­ГІГ®Г±')
                 elseif minTime == times[2] then
                     response = 1 -- LV
-                    sms('/ad - Последняя редакция была в Радиоцентре Лас-Вентурас')
+                    sms('/ad - ГЏГ®Г±Г«ГҐГ¤Г­ГїГї Г°ГҐГ¤Г ГЄГ¶ГЁГї ГЎГ»Г«Г  Гў ГђГ Г¤ГЁГ®Г¶ГҐГ­ГІГ°ГҐ Г‹Г Г±-Г‚ГҐГ­ГІГіГ°Г Г±')
                 else
                     response = 2 -- SF
-                    sms('/ad - Последняя редакция была в Радиоцентре Сан-Фиерро')
+                    sms('/ad - ГЏГ®Г±Г«ГҐГ¤Г­ГїГї Г°ГҐГ¤Г ГЄГ¶ГЁГї ГЎГ»Г«Г  Гў ГђГ Г¤ГЁГ®Г¶ГҐГ­ГІГ°ГҐ Г‘Г Г­-Г”ГЁГҐГ°Г°Г®')
                 end
             else
                 response = currentConfig.adv.ad.centr == 1 and 2 or -- SF
@@ -693,7 +693,7 @@ function sampev.onShowDialog(id, style, title, button1, button2, text)
             return false
         end
 
-        if title:find("Подача объявления") and text:find("Выберите тип объявления") then
+        if title:find("ГЏГ®Г¤Г Г·Г  Г®ГЎГєГїГўГ«ГҐГ­ГЁГї") and text:find("Г‚Г»ГЎГҐГ°ГЁГІГҐ ГІГЁГЇ Г®ГЎГєГїГўГ«ГҐГ­ГЁГї") then
             local response = currentConfig.adv.ad.type == 0 and 0 or
                            currentConfig.adv.ad.type == 1 and 1 or
                            3
@@ -702,7 +702,7 @@ function sampev.onShowDialog(id, style, title, button1, button2, text)
             return false
         end
 
-        if title:find("Подача объявления %| Подтверждение") then
+        if title:find("ГЏГ®Г¤Г Г·Г  Г®ГЎГєГїГўГ«ГҐГ­ГЁГї %| ГЏГ®Г¤ГІГўГҐГ°Г¦Г¤ГҐГ­ГЁГҐ") then
             sampSendDialogResponse(id, 1, 65535, "")
             lastMessageTime.ad = os.time()
             isAdvCommand = false
@@ -712,7 +712,7 @@ function sampev.onShowDialog(id, style, title, button1, button2, text)
 
     if id == 15379 and currentConfig.adv.ad.enabled and settings.main.enabled then
         lastMessageTime.ad = os.time() + currentConfig.adv.ad.delay
-        sms('/ad - Объявление не отредактировали, повторная попытка через {mc}'.. currentConfig.adv.ad.delay .. ' секунд')
+        sms('/ad - ГЋГЎГєГїГўГ«ГҐГ­ГЁГҐ Г­ГҐ Г®ГІГ°ГҐГ¤Г ГЄГІГЁГ°Г®ГўГ Г«ГЁ, ГЇГ®ГўГІГ®Г°Г­Г Гї ГЇГ®ГЇГ»ГІГЄГ  Г·ГҐГ°ГҐГ§ {mc}'.. currentConfig.adv.ad.delay .. ' Г±ГҐГЄГіГ­Г¤')
         sampSendDialogResponse(id, 0, 65535, "")
         return false
     end
@@ -738,7 +738,7 @@ function onWindowMessage(msg, wparam, lparam)
         lastSendKeyMessage = os.time()
 
         if stateLastSendKeyMessage then
-            sms('Работа скрипта {mc}возобновлена{FFFFFF}!')
+            sms('ГђГ ГЎГ®ГІГ  Г±ГЄГ°ГЁГЇГІГ  {mc}ГўГ®Г§Г®ГЎГ­Г®ГўГ«ГҐГ­Г {FFFFFF}!')
             stateLastSendKeyMessage = false
         end
     end
@@ -749,7 +749,7 @@ function main()
     
     checkUpdates()
     
-    sms("Успешно загружено! Активация: {mc}/autoad")
+    sms("Г“Г±ГЇГҐГёГ­Г® Г§Г ГЈГ°ГіГ¦ГҐГ­Г®! ГЂГЄГІГЁГўГ Г¶ГЁГї: {mc}/autoad")
 
     sampRegisterChatCommand('autoad', function()
         menu.switch()
@@ -757,9 +757,9 @@ function main()
 
     sampRegisterChatCommand('adv', function (arg)
         if #arg < 1 then
-            sms('Использование команды: {mc}/adv [message]')
+            sms('Г€Г±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГҐ ГЄГ®Г¬Г Г­Г¤Г»: {mc}/adv [message]')
         elseif #arg < 20 or #arg > 80 then
-            sms('В тексте объявления должно быть от 20 до 80 символов.')
+            sms('Г‚ ГІГҐГЄГ±ГІГҐ Г®ГЎГєГїГўГ«ГҐГ­ГЁГї Г¤Г®Г«Г¦Г­Г® ГЎГ»ГІГј Г®ГІ 20 Г¤Г® 80 Г±ГЁГ¬ГўГ®Г«Г®Гў.')
         else
             isAdvCommand = true
             sampSendChat('/ad ' .. arg)
@@ -772,7 +772,7 @@ function main()
         if settings.main.enabled then
             if not stateLastSendKeyMessage and settings.main.inactiveShutdown and os.time() - lastSendKeyMessage > tonumber(settings.main.sleepInactiveShutdown) * 60 then
                 stateLastSendKeyMessage = true
-                sms('Состояние скрипта {mc}приостоновлено{FFFFFF}! Обнаружена не активность в течение {mc}' .. settings.main.sleepInactiveShutdown * 60 .. '{FFFFFF} секунд!')
+                sms('Г‘Г®Г±ГІГ®ГїГ­ГЁГҐ Г±ГЄГ°ГЁГЇГІГ  {mc}ГЇГ°ГЁГ®Г±ГІГ®Г­Г®ГўГ«ГҐГ­Г®{FFFFFF}! ГЋГЎГ­Г Г°ГіГ¦ГҐГ­Г  Г­ГҐ Г ГЄГІГЁГўГ­Г®Г±ГІГј Гў ГІГҐГ·ГҐГ­ГЁГҐ {mc}' .. settings.main.sleepInactiveShutdown * 60 .. '{FFFFFF} Г±ГҐГЄГіГ­Г¤!')
             elseif not stateLastSendKeyMessage then
                 local currentConfig = settings.configs[settings.main.activeConf]
                 for _, chatType in ipairs(chatTypes) do
